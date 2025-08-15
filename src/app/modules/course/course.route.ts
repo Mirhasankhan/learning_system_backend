@@ -11,5 +11,7 @@ router.post(
   parseBodyData,
   courseController.createCourse
 );
+router.get("/", courseController.allCourses)
+router.get("/:id", courseController.getCourse)
 
 export const courseRoutes = router;
