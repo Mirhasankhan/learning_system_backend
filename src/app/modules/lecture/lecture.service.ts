@@ -80,7 +80,7 @@ const unlockNextLecture = async (userId: string) => {
   if (!nextLecture) {
     return;
   }
- 
+
   user.unlockedLectures.push(nextLecture._id);
   const updatedLecture = await user.save();
 
@@ -89,13 +89,22 @@ const unlockNextLecture = async (userId: string) => {
 
 const getMyLectures = async (userId: string) => {
   const user = await User.findById(userId)
-    .select("-password") 
+    .select("-password")
     .populate("unlockedLectures");
 
   return user;
 };
+
+const getLectureDetailsFromDb = async (lectureId: string) => {
+  const lecture = await Lecture.findById(lectureId).lean();
+  if(!lecture){
+    throw new AppError(404, "Lecture not found")
+  }
+  return lecture
+};
 export const lectureServices = {
   createLectureIntoDB,
   unlockNextLecture,
-  getMyLectures
+  getMyLectures,
+  getLectureDetailsFromDb
 };

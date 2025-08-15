@@ -29,9 +29,19 @@ const unlockLecture = catchAsync(async (req, res) => {
     data: updated,
   });
 });
+const lectureDetails = catchAsync(async (req, res) => {
+  const lecture = await lectureServices.getLectureDetailsFromDb(req.params.id);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "lecture details retrieved Successfully",
+    data: lecture,
+  });
+});
 
 export const lectureController = {
   createLecture,
   getMyLectures,
-  unlockLecture
+  unlockLecture,
+  lectureDetails,
 };

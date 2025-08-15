@@ -7,5 +7,6 @@ const router = Express.Router();
 router.post("/create", lectureController.createLecture);
 router.get("/unblocked",auth("User"), lectureController.getMyLectures);
 router.post("/unblock",auth("User"), lectureController.unlockLecture);
+router.get("/details/:id", lectureController.lectureDetails);
 
 export const lectureRoute = router;
