@@ -1,16 +1,11 @@
 import { Types } from "mongoose";
-type TUserLevel ="None"|"A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 
 export type TUser = {
   _id?: Types.ObjectId;
   fullName: string;
-  email: string;
-  phoneNumber: string;
-  currentLevel: TUserLevel;
-  currentStep:number;
+  email: string; 
   password: string;
-  otp: string;
-  isBlocked: boolean;
+  otp: string; 
   role: string;
   expiresAt: Date;
 };

@@ -1,9 +1,7 @@
-import httpStatus from "http-status";
 import AppError from "../../utils/AppError";
 import { PendingUser, User } from "./user.model";
 import bcrypt from "bcrypt";
 import { TUser } from "./user.interface";
-
 import generateOTP from "../../utils/generateOtp";
 import sendEmail from "../../utils/email";
 import { emailBody } from "../../middleware/EmailBody";
@@ -85,8 +83,7 @@ const createUserIntoDB = async (email: string, otp: string) => {
   const user = await User.create({
     email: email,
     password: userPending.password,
-    fullName,
-    phoneNumber: userPending.phoneNumber,
+    fullName,   
     role: userPending.role,
   });
 
